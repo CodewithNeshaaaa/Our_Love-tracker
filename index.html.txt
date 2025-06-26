@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Time Since She Proposed ❤️</title>
+  <style>
+    body {
+      background: #ffe6e6;
+      color: #333;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding-top: 10%;
+    }
+    h1 {
+      font-size: 3em;
+      color: #cc0066;
+    }
+    #timePassed {
+      font-size: 2em;
+      margin-top: 20px;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <h1>Since She Proposed 💖</h1>
+  <div id="timePassed">Calculating...</div>
+
+  <script>
+    function updateTime() {
+      const proposalDate = new Date("2023-02-09T20:00:00");
+      const now = new Date();
+
+      let years = now.getFullYear() - proposalDate.getFullYear();
+      let months = now.getMonth() - proposalDate.getMonth();
+      let days = now.getDate() - proposalDate.getDate();
+      let hours = now.getHours() - proposalDate.getHours();
+
+      if (hours < 0) {
+        hours += 24;
+        days--;
+      }
+      if (days < 0) {
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+        days += prevMonth;
+        months--;
+      }
+      if (months < 0) {
+        months += 12;
+        years--;
+      }
+
+      document.getElementById("timePassed").textContent =
+        `${years} years, ${months} months, ${days} days, and ${hours} hours`;
+    }
+
+    updateTime();
+    setInterval(updateTime, 3600000); // update every hour
+  </script>
+</body>
+</html>
