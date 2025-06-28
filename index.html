@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,9 +30,7 @@
       margin-top: 30px;
       font-style: italic;
       color: #cc3366;
-    }
-    audio {
-      margin-top: 20px;
+      padding: 0 20px;
     }
   </style>
 </head>
@@ -42,10 +39,6 @@
   <h2>Aakash & Nesha Forever 💑</h2>
   <div id="timePassed">Loading...</div>
   <div id="quote">Love is loading...</div>
-  <audio controls autoplay loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
 
   <script>
     const quotes = [
@@ -57,11 +50,16 @@
       "Forever is a long time, but I wouldn’t mind spending it with you.",
       "I still get butterflies even though I’ve seen you a hundred times.",
       "You’re my today and all of my tomorrows.",
-      "I choose you. And I’ll choose you over and over. Without pause, without doubt, in a heartbeat."
+      "I choose you. And I’ll choose you over and over. Without pause, without doubt, in a heartbeat.",
+      "You're the missing piece I didn't know I was searching for.",
+      "Meeting you was fate, becoming your friend was a choice, but falling in love with you was beyond my control.",
+      "You make my heart smile."
     ];
 
+    let lastQuoteIndex = -1;
+
     function updateTime() {
-      const proposalDate = new Date("2023-02-09T21:00:00"); // 9 PM
+      const proposalDate = new Date("2023-02-09T21:00:00");
       const now = new Date();
       let diff = now - proposalDate;
 
@@ -79,14 +77,19 @@
     }
 
     function updateQuote() {
-      const quote = quotes[Math.floor(Math.random() * quotes.length)];
-      document.getElementById("quote").textContent = `"${quote}"`;
+      let index;
+      do {
+        index = Math.floor(Math.random() * quotes.length);
+      } while (index === lastQuoteIndex); // Avoid repeating same quote
+      lastQuoteIndex = index;
+      document.getElementById("quote").textContent = `"${quotes[index]}"`;
     }
 
     updateTime();
-    setInterval(updateTime, 1000); // update every second
     updateQuote();
-    setInterval(updateQuote, 120000); // update quote every 2 minutes
+
+    setInterval(updateTime, 1000); // update time every second
+    setInterval(updateQuote, 60000); // change quote every 1 minute
   </script>
 </body>
 </html>
