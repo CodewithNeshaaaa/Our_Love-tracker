@@ -2,60 +2,94 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Time Since She Proposed ❤️</title>
+  <title>Since Nesha Proposed 💖</title>
   <style>
     body {
-      background: #ffe6e6;
+      background: #fff0f5;
       color: #333;
       font-family: 'Segoe UI', sans-serif;
       text-align: center;
-      padding-top: 10%;
+      padding-top: 5%;
     }
     h1 {
-      font-size: 3em;
-      color: #cc0066;
+      font-size: 2.5em;
+      color: #d63384;
+    }
+    h2 {
+      font-size: 1.5em;
+      margin-top: 10px;
+      color: #8a2be2;
     }
     #timePassed {
-      font-size: 2em;
+      font-size: 1.8em;
       margin-top: 20px;
       color: #444;
+    }
+    #quote {
+      font-size: 1.2em;
+      margin-top: 30px;
+      font-style: italic;
+      color: #cc3366;
+      padding: 0 20px;
     }
   </style>
 </head>
 <body>
-  <h1>Since She Proposed 💖</h1>
-  <div id="timePassed">Calculating...</div>
+  <h1>Since Nesha Proposed to Me 💖</h1>
+  <h2>Aakash & Nesha Forever 💑</h2>
+  <div id="timePassed">Loading...</div>
+  <div id="quote">Love is loading...</div>
 
   <script>
+    const quotes = [
+      "I love you not only for what you are, but for what I am when I am with you.",
+      "Every love story is beautiful, but ours is my favorite.",
+      "You are the reason I smile a little more and love a lot deeper.",
+      "My heart is perfect because you are inside.",
+      "In your smile I see something more beautiful than the stars.",
+      "Forever is a long time, but I wouldn’t mind spending it with you.",
+      "I still get butterflies even though I’ve seen you a hundred times.",
+      "You’re my today and all of my tomorrows.",
+      "I choose you. And I’ll choose you over and over. Without pause, without doubt, in a heartbeat.",
+      "You're the missing piece I didn't know I was searching for.",
+      "Meeting you was fate, becoming your friend was a choice, but falling in love with you was beyond my control.",
+      "You make my heart smile."
+    ];
+
+    let lastQuoteIndex = -1;
+
     function updateTime() {
-      const proposalDate = new Date("2023-02-09T20:00:00");
+      const proposalDate = new Date("2023-02-09T21:00:00");
       const now = new Date();
+      let diff = now - proposalDate;
 
-      let years = now.getFullYear() - proposalDate.getFullYear();
-      let months = now.getMonth() - proposalDate.getMonth();
-      let days = now.getDate() - proposalDate.getDate();
-      let hours = now.getHours() - proposalDate.getHours();
+      const seconds = Math.floor(diff / 1000) % 60;
+      const minutes = Math.floor(diff / 1000 / 60) % 60;
+      const hours = Math.floor(diff / 1000 / 60 / 60) % 24;
+      const days = Math.floor(diff / 1000 / 60 / 60 / 24);
 
-      if (hours < 0) {
-        hours += 24;
-        days--;
-      }
-      if (days < 0) {
-        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
-        days += prevMonth;
-        months--;
-      }
-      if (months < 0) {
-        months += 12;
-        years--;
-      }
+      const years = Math.floor(days / 365);
+      const months = Math.floor((days % 365) / 30);
+      const remainingDays = days - (years * 365 + months * 30);
 
       document.getElementById("timePassed").textContent =
-        `${years} years, ${months} months, ${days} days, and ${hours} hours`;
+        `${years} years, ${months} months, ${remainingDays} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds.`;
+    }
+
+    function updateQuote() {
+      let index;
+      do {
+        index = Math.floor(Math.random() * quotes.length);
+      } while (index === lastQuoteIndex); // Avoid repeating same quote
+      lastQuoteIndex = index;
+      document.getElementById("quote").textContent = `"${quotes[index]}"`;
     }
 
     updateTime();
-    setInterval(updateTime, 3600000); // update every hour
+    updateQuote();
+
+    setInterval(updateTime, 1000); // update time every second
+    setInterval(updateQuote, 60000); // change quote every 1 minute
   </script>
 </body>
 </html>
