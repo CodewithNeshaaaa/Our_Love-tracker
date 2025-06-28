@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Since Nesha Proposed 💖</title>
+  <style>
+    body {
+      background: #fff0f5;
+      color: #333;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding-top: 5%;
+    }
+    h1 {
+      font-size: 2.5em;
+      color: #d63384;
+    }
+    h2 {
+      font-size: 1.5em;
+      margin-top: 10px;
+      color: #8a2be2;
+    }
+    #timePassed {
+      font-size: 1.8em;
+      margin-top: 20px;
+      color: #444;
+    }
+    #quote {
+      font-size: 1.2em;
+      margin-top: 30px;
+      font-style: italic;
+      color: #cc3366;
+    }
+    audio {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Since Nesha Proposed to Me 💖</h1>
+  <h2>Aakash & Nesha Forever 💑</h2>
+  <div id="timePassed">Loading...</div>
+  <div id="quote">Love is loading...</div>
+  <audio controls autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    const quotes = [
+      "I love you not only for what you are, but for what I am when I am with you.",
+      "Every love story is beautiful, but ours is my favorite.",
+      "You are the reason I smile a little more and love a lot deeper.",
+      "My heart is perfect because you are inside.",
+      "In your smile I see something more beautiful than the stars.",
+      "Forever is a long time, but I wouldn’t mind spending it with you.",
+      "I still get butterflies even though I’ve seen you a hundred times.",
+      "You’re my today and all of my tomorrows.",
+      "I choose you. And I’ll choose you over and over. Without pause, without doubt, in a heartbeat."
+    ];
+
+    function updateTime() {
+      const proposalDate = new Date("2023-02-09T21:00:00"); // 9 PM
+      const now = new Date();
+      let diff = now - proposalDate;
+
+      const seconds = Math.floor(diff / 1000) % 60;
+      const minutes = Math.floor(diff / 1000 / 60) % 60;
+      const hours = Math.floor(diff / 1000 / 60 / 60) % 24;
+      const days = Math.floor(diff / 1000 / 60 / 60 / 24);
+
+      const years = Math.floor(days / 365);
+      const months = Math.floor((days % 365) / 30);
+      const remainingDays = days - (years * 365 + months * 30);
+
+      document.getElementById("timePassed").textContent =
+        `${years} years, ${months} months, ${remainingDays} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds.`;
+    }
+
+    function updateQuote() {
+      const quote = quotes[Math.floor(Math.random() * quotes.length)];
+      document.getElementById("quote").textContent = `"${quote}"`;
+    }
+
+    updateTime();
+    setInterval(updateTime, 1000); // update every second
+    updateQuote();
+    setInterval(updateQuote, 120000); // update quote every 2 minutes
+  </script>
+</body>
+</html>
